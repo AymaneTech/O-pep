@@ -18,10 +18,6 @@ project/
 |   |-- config.php
 |   |-- database.php
 |
-|-- templates/
-|   |-- main_template.php
-|   |-- secondary_template.php
-|
 |-- uploads/
 |
 |-- index.php
