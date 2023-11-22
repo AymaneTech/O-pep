@@ -19,14 +19,20 @@
                 <h2 class="user-role pt-3">
                     I want to bye
                 </h2>
-                <a href="./login.php?role=client" class="role-link">Client</a>
+                <form action="../models/role.md.php/" method="POST">
+                    <input type="hidden" name="role" value="client">
+                    <button class="role-link" type="submit" name="">client</button>
+                </form>
             </div>
             <div class="card p-5 d-flex flex-column align-items-center">
                 <img src="../assets/images/user.png" alt="user icon">
                 <h2 class="user-role pt-3">
                     I am admin
                 </h2>
-                <a href="./login.php?role=admin" class="role-link">Admin</a>
+                <form action="../models/role.md.php/" method="POST">
+                    <input type="hidden" name="role" value="admin">
+                    <button class="role-link" type="submit" name="">Admin</button>
+                </form>
             </div>
         </div>
     </section>
