@@ -1,4 +1,4 @@
-
+<?php include("./models/signup.md.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,9 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <title>Login</title>
 
 </head>
@@ -32,14 +31,14 @@
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example1c">Your First Name</label>
-                                                <input name="first_name" type="text" id="form3Example1c"
-                                                    class="form-control" />
+                                                <input name="first_name" value="<?= $_POST["first_name"] ?>" type="text" id="form3Example1c" class="form-control" />
+                                                <?php echo isset($_GET['name_error']) ? $_GET['name_error'] : ""; ?>
                                             </div>
                                             <div class="form-outline flex-fill mb-0">
                                                 <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                                 <label class="form-label" for="form3Example1c">Your Last Name</label>
-                                                <input name="last_name" type="text" id="form3Example1c"
-                                                    class="form-control" />
+                                                <input name="last_name" type="text" id="form3Example1c" class="form-control" />
+                                                <?php echo isset($_GET['name_error']) ? $_GET['name_error'] : ""; ?>
                                             </div>
                                         </div>
 
@@ -47,16 +46,15 @@
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example3c">Your Email</label>
-                                                <input name="email" type="email" id="form3Example3c"
-                                                    class="form-control" />
+                                                <input name="email" type="email" id="form3Example3c" class="form-control" />
                                             </div>
                                         </div>
                                         <div class="d-flex flex-row align-items-center mb-3">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example3c">Your adress</label>
-                                                <input name="adress" type="text" id="form3Example3c"
-                                                    class="form-control" />
+                                                <input name="adress" type="text" id="form3Example3c" class="form-control" />
+                                                <?php echo isset($_GET['name_error']) ? $_GET['name_error'] : ""; ?>
                                             </div>
                                         </div>
 
@@ -64,8 +62,8 @@
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example4c">Password</label>
-                                                <input name="pwd" type="password" id="form3Example4c"
-                                                    class="form-control" />
+                                                <input name="pwd" type="password" id="form3Example4c" class="form-control" />
+                                                <?php echo isset($_GET['name_error']) ? $_GET['name_error'] : ""; ?>
                                             </div>
                                         </div>
 
@@ -74,8 +72,8 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example4cd">Repeat your
                                                     password</label>
-                                                <input name="pwd2" type="password" id="form3Example4cd"
-                                                    class="form-control" />
+                                                <input name="pwd2" type="password" id="form3Example4cd" class="form-control" />
+                                                <?php echo isset($_GET['name_error']) ? $_GET['name_error'] : ""; ?>
                                             </div>
                                         </div>
                                         <div class="form-check d-flex justify-content-center mb-5">
@@ -85,8 +83,7 @@
                                         </div>
 
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                                            <button type="submit" name="register"
-                                                class="button btn-lg">Register</button>
+                                            <button type="submit" name="register" class="button btn-lg">Register</button>
                                         </div>
 
                                     </form>
