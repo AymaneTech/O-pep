@@ -1,5 +1,5 @@
 <?php
-@include_once("../config/db.php");
+include(__DIR__ . '/../config/db.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST["register"])) {
@@ -51,10 +51,9 @@ function insertUserInfo($first_name, $last_name, $email, $hashedPwd, $adress)
 
 
     if ($stmt->execute()) {
-        header('Location: ../pages/role.php');
-        exit();
+        header('Location: ../../pages/role.php');
     } else {
-        header('Location: ../?error_msg=registration_failed');
-        exit();
+        echo "Error: " . $stmt->errorInfo()[2];
     }
+    exit();
 }

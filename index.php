@@ -1,10 +1,8 @@
 <?php
 include("./models/signup.md.php");
-include("./includes/header.php");
+include_once("./includes/header.php");
 ?>
-
 <body>
-
     <section class="vh-100" style="background-color: #eee;">
         <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
@@ -81,7 +79,7 @@ include("./includes/header.php");
                                     </form>
                                 </div>
                                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                                    <img src="./assets/images/image1.jpg" class="img-fluid" alt="Sample image">
+                                    <img src="./assets/images/image3.jpg" class="img-fluid" alt="Sample image">
                                 </div>
                             </div>
                         </div>

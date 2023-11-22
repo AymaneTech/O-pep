@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <section class="main-content">
+    <section class="main-content h-100 py-5">
         <h1 class="primary-heading text-white fw-bold text-center p-5">
             Choose your role from here
         </h1>
