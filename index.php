@@ -1,7 +1,6 @@
-<?php
-?>
 
-<!DOCTYPE html>html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -9,6 +8,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
     <title>Login</title>
 
 </head>
@@ -24,20 +24,26 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 
-                                    <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                                    <p class="text-center h1 fw-bold mb-4 mx-1 mx-md-4 mt-2">Sign up</p>
 
-                                    <form action="../includes/signup.inc.php" method="post" class="mx-1 mx-md-4">
+                                    <form action="./models/signup.md.php" method="post" class="mx-1 mx-md-4">
 
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="d-flex flex-row align-items-center mb-3 gap-1">
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
-                                                <label class="form-label" for="form3Example1c">Your Name</label>
-                                                <input name="username" type="text" id="form3Example1c"
+                                                <label class="form-label" for="form3Example1c">Your First Name</label>
+                                                <input name="first_name" type="text" id="form3Example1c"
+                                                    class="form-control" />
+                                            </div>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+                                                <label class="form-label" for="form3Example1c">Your Last Name</label>
+                                                <input name="last_name" type="text" id="form3Example1c"
                                                     class="form-control" />
                                             </div>
                                         </div>
 
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="d-flex flex-row align-items-center mb-3">
                                             <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example3c">Your Email</label>
@@ -45,8 +51,16 @@
                                                     class="form-control" />
                                             </div>
                                         </div>
+                                        <div class="d-flex flex-row align-items-center mb-3">
+                                            <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+                                            <div class="form-outline flex-fill mb-0">
+                                                <label class="form-label" for="form3Example3c">Your adress</label>
+                                                <input name="adress" type="text" id="form3Example3c"
+                                                    class="form-control" />
+                                            </div>
+                                        </div>
 
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="d-flex flex-row align-items-center mb-3">
                                             <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example4c">Password</label>
@@ -55,7 +69,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="d-flex flex-row align-items-center mb-4">
+                                        <div class="d-flex flex-row align-items-center mb-3">
                                             <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example4cd">Repeat your
@@ -64,19 +78,6 @@
                                                     class="form-control" />
                                             </div>
                                         </div>
-
-                                        <?php
-                                        session_start();
-                                        if (isset($_SESSION["incorrectPwd"])) {
-                                            ?>
-                                            <p class="d-flex justify-content-center text-danger">
-                                                <?= $_SESSION["incorrectPwd"]; ?>
-                                            </p>
-                                            <?php
-                                        }
-                                        session_unset();
-                                        ?>
-
                                         <div class="form-check d-flex justify-content-center mb-5">
                                             <label class="form-check-label" for="form2Example3">
                                                 Already have an account <a class="login-link" href="./login.php">Sign In</a>
