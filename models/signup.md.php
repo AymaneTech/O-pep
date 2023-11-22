@@ -1,5 +1,5 @@
 <?php
-include("../config/db.php");
+@include_once("../config/db.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST["register"])) {
@@ -39,7 +39,7 @@ function hashing_func($password)
 
 function insertUserInfo($first_name, $last_name, $email, $hashedPwd, $adress)
 {
-    global $pdo; 
+    global $pdo;
 
     $query = "INSERT INTO users (first_name, last_name, email, password, adresse) VALUES (?, ?, ?, ?, ?);";
     $stmt = $pdo->prepare($query);
@@ -48,7 +48,7 @@ function insertUserInfo($first_name, $last_name, $email, $hashedPwd, $adress)
     $stmt->bindParam(3, $email, PDO::PARAM_STR);
     $stmt->bindParam(4, $hashedPwd, PDO::PARAM_STR);
     $stmt->bindParam(5, $adress, PDO::PARAM_STR);
-    
+
 
     if ($stmt->execute()) {
         header('Location: ../?success_msg=registration_successful');

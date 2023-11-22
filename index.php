@@ -83,18 +83,14 @@
                                                 Already have an account <a class="login-link" href="./login.php">Sign In</a>
                                             </label>
                                         </div>
-
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <button type="submit" name="register" class="button btn-lg">Register</button>
                                         </div>
 
                                     </form>
-
                                 </div>
                                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-
                                     <img src="./assets/images/image1.jpg" class="img-fluid" alt="Sample image">
-
                                 </div>
                             </div>
                         </div>
