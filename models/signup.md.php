@@ -51,7 +51,7 @@ function insertUserInfo($first_name, $last_name, $email, $hashedPwd, $adress)
 
 
     if ($stmt->execute()) {
-        header('Location: ../?success_msg=registration_successful');
+        header('Location: ../pages/role.php');
         exit();
     } else {
         header('Location: ../?error_msg=registration_failed');

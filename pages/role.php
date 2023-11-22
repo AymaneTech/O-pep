@@ -1,0 +1,35 @@
+<?php include('../includes/header.php') ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="main-content">
+        <h1 class="primary-heading text-white fw-bold text-center p-5">
+            Choose your role from here
+        </h1>
+        <div class="role-cards d-flex justify-content-center gap-5 pt-5 mt-5">
+            <div class="card p-5 d-flex flex-column align-items-center">
+                <img src="../assets/images/teamwork.png" alt="user icon">
+                <h2 class="user-role pt-3">
+                    I want to bye
+                </h2>
+                <a href="./login.php?role=client" class="role-link">Client</a>
+            </div>
+            <div class="card p-5 d-flex flex-column align-items-center">
+                <img src="../assets/images/user.png" alt="user icon">
+                <h2 class="user-role pt-3">
+                    I am admin
+                </h2>
+                <a href="./login.php?role=admin" class="role-link">Admin</a>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

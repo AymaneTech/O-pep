@@ -1,0 +1,13 @@
+img{
+    width: 200px;
+    height: 200px;
+    display: flex;
+}
+body{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(../images/image3.jpg);
+}
+.card{
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border-radius: 24px !important;
+    background: #eee;
+}
