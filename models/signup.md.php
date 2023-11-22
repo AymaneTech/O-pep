@@ -4,5 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $firstName = filter_input(INPUT_POST, "username",
         FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+        echo $firstName;
+
     }
 }
