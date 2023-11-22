@@ -31,14 +31,14 @@
                                             <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example1c">Your First Name</label>
-                                                <input name="first_name" value="<?= $_POST["first_name"] ?>" type="text" id="form3Example1c" class="form-control" />
-                                                <?php echo isset($_GET['name_error']) ? $_GET['name_error'] : ""; ?>
+                                                <input name="first_name" type="text" id="form3Example1c" class="form-control" />
+
                                             </div>
                                             <div class="form-outline flex-fill mb-0">
                                                 <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                                                 <label class="form-label" for="form3Example1c">Your Last Name</label>
                                                 <input name="last_name" type="text" id="form3Example1c" class="form-control" />
-                                                <?php echo isset($_GET['name_error']) ? $_GET['name_error'] : ""; ?>
+
                                             </div>
                                         </div>
 
@@ -47,6 +47,7 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example3c">Your Email</label>
                                                 <input name="email" type="email" id="form3Example3c" class="form-control" />
+
                                             </div>
                                         </div>
                                         <div class="d-flex flex-row align-items-center mb-3">
@@ -54,7 +55,7 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example3c">Your adress</label>
                                                 <input name="adress" type="text" id="form3Example3c" class="form-control" />
-                                                <?php echo isset($_GET['name_error']) ? $_GET['name_error'] : ""; ?>
+
                                             </div>
                                         </div>
 
@@ -63,7 +64,7 @@
                                             <div class="form-outline flex-fill mb-0">
                                                 <label class="form-label" for="form3Example4c">Password</label>
                                                 <input name="pwd" type="password" id="form3Example4c" class="form-control" />
-                                                <?php echo isset($_GET['name_error']) ? $_GET['name_error'] : ""; ?>
+
                                             </div>
                                         </div>
 
@@ -73,9 +74,10 @@
                                                 <label class="form-label" for="form3Example4cd">Repeat your
                                                     password</label>
                                                 <input name="pwd2" type="password" id="form3Example4cd" class="form-control" />
-                                                <?php echo isset($_GET['name_error']) ? $_GET['name_error'] : ""; ?>
+
                                             </div>
                                         </div>
+                                        <p class="error"><?php echo isset($_GET['error_msg']) ? $_GET['error_msg'] : ""; ?></p>
                                         <div class="form-check d-flex justify-content-center mb-5">
                                             <label class="form-check-label" for="form2Example3">
                                                 Already have an account <a class="login-link" href="./login.php">Sign In</a>
@@ -91,7 +93,7 @@
                                 </div>
                                 <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                                    <img src="../assets/images/bg-2.jpg" class="img-fluid" alt="Sample image">
+                                    <img src="./assets/images/image1.jpg" class="img-fluid" alt="Sample image">
 
                                 </div>
                             </div>
