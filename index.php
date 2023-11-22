@@ -1,8 +1,7 @@
 <?php
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Login</title>
+
 </head>
 
 <body>
@@ -79,13 +79,13 @@
 
                                         <div class="form-check d-flex justify-content-center mb-5">
                                             <label class="form-check-label" for="form2Example3">
-                                                Already have an account <a href="./login.php">Sign In</a>
+                                                Already have an account <a class="login-link" href="./login.php">Sign In</a>
                                             </label>
                                         </div>
 
                                         <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                                             <button type="submit" name="register"
-                                                class="btn btn-lg">Register</button>
+                                                class="button btn-lg">Register</button>
                                         </div>
 
                                     </form>
