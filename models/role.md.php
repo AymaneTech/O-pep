@@ -1,5 +1,11 @@
 <?php
 include ('../config/db.php');
+//if($_SERVER['REQUEST_METHOD' == 'post']){
+    if (!(isset($_POST["register"]))){
+        header("location ../pages/index.php");
+        exit();
+    }
+//}
 
 if (isset($_POST["role"])){
     updateUserRole();

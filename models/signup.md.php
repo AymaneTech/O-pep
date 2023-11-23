@@ -4,6 +4,8 @@ include(__DIR__ . '/../config/db.php');
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST["register"])) {
         validate();
+        header('Location: ../pages/role.php');
+        exit();
     }
 }
 
@@ -51,7 +53,7 @@ function insertUserInfo($first_name, $last_name, $email, $hashedPwd, $adress)
 
 
     if ($stmt->execute()) {
-        header('Location: ../../pages/role.php');
+        header('Location: ../pages/role.php');
     } else {
         echo "Error: " . $stmt->errorInfo()[2];
     }

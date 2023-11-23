@@ -1,4 +1,12 @@
-<?php include('../includes/header.php') ?>
+<?php
+include(__DIR__ . '/../includes/header.php');
+//include('../includes/header.php');
+if (!isset($_POST["register"])) {
+    header("Location: ./index.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
