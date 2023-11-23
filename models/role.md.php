@@ -1,11 +1,5 @@
 <?php
 include ('../config/db.php');
-//if($_SERVER['REQUEST_METHOD' == 'post']){
-    if (!(isset($_POST["register"]))){
-        header("location ../pages/index.php");
-        exit();
-    }
-//}
 
 if (isset($_POST["role"])){
     updateUserRole();
@@ -27,6 +21,7 @@ function updateUserRole(){
     $stmt->bindParam('user_id', $userId, PDO::PARAM_INT);$stmt->execute();
 
     if ($stmt->execute()){
+        //die("here is the role id ". $role_id);
         header("location: ../../pages/login.php");
     }else{
         die("failed to update role id homie !!!!");

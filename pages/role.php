@@ -4,8 +4,10 @@ include(__DIR__ . '/../includes/header.php');
 session_start();
 if (!isset($_SESSION["username"])) {
     header("Location: ./index.php");
+    unset($_SESSION["username"]);
     exit();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

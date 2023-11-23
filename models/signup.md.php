@@ -19,13 +19,13 @@ function validate()
     $pwd2 = $_POST['pwd2'];
 
     if (!$first_name || !$last_name || !$email || !$adress) {
-        header('Location: ../?error_msg=incorrect_information');
+        header('Location: ../pages/index.php?error_msg=incorrect_information');
         exit();
     } elseif (empty($pwd) || empty($pwd2)) {
-        header('Location: ../?error_msg=empty_password');
+        header('Location: ../pages/index.php?error_msg=empty_password');
         exit();
     } elseif ($pwd !== $pwd2) {
-        header('Location: ../?error_msg=passwords_not_equal');
+        header('Location: ../pages/index.php?error_msg=passwords_not_equal');
         exit();
     } else {
         $hashedPwd = hashing_func($pwd);
@@ -50,12 +50,13 @@ function insertUserInfo($first_name, $last_name, $email, $hashedPwd, $adress)
     $stmt->bindParam(3, $email, PDO::PARAM_STR);
     $stmt->bindParam(4, $hashedPwd, PDO::PARAM_STR);
     $stmt->bindParam(5, $adress, PDO::PARAM_STR);
-
-
     if ($stmt->execute()) {
+        session_start();
+        $_SESSION["username"] = $first_name;
+
         header('Location: ../pages/role.php');
+        exit();
     } else {
-        echo "Error: " . $stmt->errorInfo()[2];
+        echo "Error there is an error homie: " . $stmt->errorInfo()[2];
     }
-    exit();
 }
