@@ -1,11 +1,11 @@
 <?php
 include(__DIR__ . '/../includes/header.php');
 //include('../includes/header.php');
-if (!isset($_POST["register"])) {
+session_start();
+if (!isset($_SESSION["username"])) {
     header("Location: ./index.php");
     exit();
 }
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +14,7 @@ if (!isset($_POST["register"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
+</head> 
 
 <body>
     <section class="main-content h-100 py-5">

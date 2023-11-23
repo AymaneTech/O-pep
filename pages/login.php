@@ -11,7 +11,7 @@
                     <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-center">
                         <p class="lead fw-normal mb-0 me-3 py-3">Sign in with</p>
                     </div>
-                    <form action="../includes/login.inc.php" method="post">
+                    <form action="../models/login.md.php" method="post">
                         <!-- Email input -->
                         <div class="form-outline mb-4">
                             <label class="form-label" for="form3Example3">Email address</label>
@@ -32,7 +32,7 @@
                         }
                         ?>
                         <div class="text-center text-lg-center mt-4 pt-2">
-                            <button type="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" name="login">Login</button>
+                            <button type="submit" class="btn btn-primary btn-lg" name="login-btn" style="padding-left: 2.5rem; padding-right: 2.5rem;" name="login">Login</button>
                     </form>
                     <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="./signup.php" class="link-danger">Register</a></p>
                 </div>

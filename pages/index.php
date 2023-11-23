@@ -4,7 +4,7 @@ include("../includes/header.php");
 ?>
 <body>
 <section class="vh-100" style="background-color: #eee;">
-    <div xclass="container h-100">
+    <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-lg-12 col-xl-11">
                 <div class="card text-black" style="border-radius: 25px;">
@@ -67,6 +67,7 @@ include("../includes/header.php");
                                         </div>
                                     </div>
                                     <p class="error"><?php echo isset($_GET['error_msg']) ? $_GET['error_msg'] : ""; ?></p>
+
                                     <div class="form-check d-flex justify-content-center mb-5">
                                         <label class="form-check-label" for="form2Example3">
                                             Already have an account <a class="login-link" href="./login.php">Sign In</a>
