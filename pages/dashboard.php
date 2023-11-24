@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- css links-->
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-    <script>
-        
-    </script>
 </head>
 
 <body>
@@ -37,17 +37,10 @@
             </div>
             <table class="table table-striped table-hover">
                 <thead>
-                <tr>
-                    <th>
-                        <span class="custom-checkbox">
-                            <input type="checkbox" id="selectAll">
-                            <label for="selectAll"></label>
-                        </span>
-                    </th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Address</th>
-                    <th>Phone</th>
+                    <th>Plant Image</th>
+                    <th>Plant name</th>
+                    <th>Plant description</th>
+                    <th>plant price</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
