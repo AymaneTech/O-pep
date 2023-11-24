@@ -6,8 +6,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES["productImg"])) {
         checkFileError();
         insertProduct();
+        header("location: ../pages/dashboard.php");
     }
 }
+
 function checkFileError(){
     switch ($_FILES['productImg']['error']) {
         case UPLOAD_ERR_OK:
@@ -57,4 +59,3 @@ function insertProduct(){
 
     $stmt->execute();
 }
-
