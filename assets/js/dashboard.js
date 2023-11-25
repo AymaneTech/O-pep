@@ -21,3 +21,7 @@ $(document).ready(function () {
                 }
             });
         });
+
+$('.delete').click(function () {
+    $('#deleteEmployeeModal').modal('show');
+});
