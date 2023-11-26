@@ -40,7 +40,7 @@
                     you.</p>
                 <div class="card">
                     <h5 class="text-center mb-4">Powering world-class companies</h5>
-                    <form class="form-card">
+                    <form class="form-card" action="../models/updateProduct.php">
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex"> <label
                                     class="form-control-label px-3">Plant name<span class="text-danger">
@@ -49,13 +49,14 @@
                                     placeholder="Enter plant name"> </div>
                             <div class="form-group col-sm-6 flex-column d-flex"> <label
                                     class="form-control-label px-3">plant description<span class="text-danger">
-                                        *</span></label> <input type="text" id="lname" name="lname"
+                                        *</span></label> 
+                                        <input type="text"  value="<?= $row["plant_desc"] ?>" id="lname" name="lname"
                                     placeholder="Enter plant description"> </div>
                         </div>
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex"> <label
                                     class="form-control-label px-3">Price<span class="text-danger"> *</span></label>
-                                <input type="text" id="email" name="email" placeholder=""> </div>
+                                <input type="text" id="text" value="<?= $row["plant_name"] ?>" name="email" placeholder=""> </div>
                             <div class="form-group">
                                 <label for="category">category</label>
                                 <select id="category">
@@ -71,8 +72,9 @@
 
                         </div>
                         <div class="row justify-content-end">
-                            <div class="form-group col-sm-6"> <button type="submit"
-                                    class="btn-block btn-primary">Update</button> </div>
+                            <div class="form-group col-sm-6"> 
+                                <button type="submit"class="btn-block btn-primary">Update</button> 
+                            </div>
                         </div>
                     </form>
                 </div>

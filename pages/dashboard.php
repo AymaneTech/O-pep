@@ -37,6 +37,7 @@
             </div>
             <table class="table table-striped table-hover">
                 <thead>
+                <tr>
                     <th>Plant Image</th>
                     <th>Plant name</th>
                     <th>Plant description</th>
