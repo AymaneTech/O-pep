@@ -129,7 +129,7 @@ h2 {
             }
       
             .section-products #product-1 .part-1::before {
-              background: url("../images/hero_1.jpg") no-repeat center;
+              background: url("../images/hero_2.jpg") no-repeat center;
               background-size: cover;
               transition: all 0.3s;
             }

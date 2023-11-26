@@ -21,14 +21,7 @@ function selectProduct(){
                 <a href="../models/deleteProduct.md.php?id=<?=$row["plant_id"]?>">delete</a>
                 <a href="../pages/update.php?id=<?=$row["plant_id"]?>">Update</a>
                 <a href="#edEmployeerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                <!--<a href="#deleteEmployeeModal" class="delete" data-toggle="modal">
-                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                </a>-->
-                <!--<form action="../models/deleteProduct.md.php" method="post">
-                    <input type="hidden"  name="product_id" value="">
-                    <button type="submit" name="delete">Delete</button>
-                    <button type="submit" name="update">update</button>
-                </form>-->
+
             </td>
         </tr>
 <?php

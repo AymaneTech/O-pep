@@ -1,4 +1,14 @@
-<?php include("../models/selectProduct.md.php")?>
+<?php
+include("../models/selectProduct.md.php");
+include ('../config/db.php');
+
+    global $pdo;
+    $query  = "SELECT * FROM category";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,10 +100,10 @@
                     </div>
                     <div class="form-group">
                         <label for="category">category</label>
-                        <select id="category">
-                            <option>test</option>
-                            <option>test</option>
-                            <option>test</option>
+                        <select id="category" name="category">
+                        <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){ ?>
+                            <option value ="<?= $row["category_id"] ?>"><?= $row["category_name"]?></option>
+                        <?php }?>
                         </select>
                     </div>
                     <div class="form-group">

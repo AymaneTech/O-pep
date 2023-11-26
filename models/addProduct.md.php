@@ -1,7 +1,7 @@
 <?php
 include ("../config/db.php");
 
-// I do this switch to handle files errors
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES["productImg"])) {
         checkFileError();
@@ -47,7 +47,7 @@ function insertProduct(){
     $productName = $_POST["productName"];
     $productPrice = $_POST["product_price"];
     $productDesc = $_POST["productDesc"];
-    $category_id = 1;
+    $category_id = $_POST["category"];
 
     $query = "INSERT INTO plant (plant_name, plant_desc, plant_price, plant_image, category_id) VALUES (:plant_name, :plant_desc, :plant_price, :plant_image, :category_id)";
     $stmt = $pdo->prepare($query);

@@ -1,6 +1,43 @@
 <?php
-    include("../models/updateProduct.md.php");
-    $row = selectProductToUpdate();
+include("../config/db.php");
+function selectProductToUpdate()
+{
+    $id = $_GET['id'];
+    global $pdo;
+    $query = "SELECT * FROM plant where plant_id = :id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+$row = selectProductToUpdate();
+function insertUpdatedProduct()
+{
+    global $pdo;
+    $id = $_GET['id'];
+    $tmp_name = file_get_contents($_FILES['productImg']['tmp_name']);
+    $query = "UPDATE plant SET plant_name = :pname, plant_desc = :pdesc, plant_price = :pprice, category_id = :category_id, plant_image = :plant_image  where  plant_id = :id;";
+    $stmt = $pdo->prepare($query);
+
+    $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    $stmt->bindParam(':pname', $_POST["plant_name"], PDO::PARAM_STR);
+    $stmt->bindParam(':pdesc', $_POST["plant_desc"], PDO::PARAM_STR);
+    $stmt->bindParam(':pprice', $_POST["plant_price"], PDO::PARAM_INT);
+    $stmt->bindParam(':category_id', $_POST["category"], PDO::PARAM_INT);
+    $stmt->bindParam(':plant_image', $tmp_name, PDO::PARAM_LOB);
+
+    $stmt->execute();
+    header('location: ../pages/dashboard.php');
+    exit();
+}
+
+$catQuery = "SELECT * FROM category;";
+$stmt = $pdo->prepare($catQuery);
+$stmt->execute();
+
+if (isset($_POST["update_form"])) {
+    insertUpdatedProduct();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,43 +77,49 @@
                     you.</p>
                 <div class="card">
                     <h5 class="text-center mb-4">Powering world-class companies</h5>
-                    <form class="form-card" action="../models/updateProduct.php">
+                    <form class="form-card" action="" method="post" enctype="multipart/form-data">
                         <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label
-                                    class="form-control-label px-3">Plant name<span class="text-danger">
-                                        *</span></label> 
-                                        <input type="text" value="<?=$row["plant_name"]?>" id="fname" name="fname"
-                                    placeholder="Enter plant name"> </div>
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label
-                                    class="form-control-label px-3">plant description<span class="text-danger">
-                                        *</span></label> 
-                                        <input type="text"  value="<?= $row["plant_desc"] ?>" id="lname" name="lname"
-                                    placeholder="Enter plant description"> </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Plant name<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" value="<?= isset($_GET["id"]) ? $row["plant_name"] : 'nothing' ?>"
+                                    id="fname" name="plant_name" placeholder="Enter plant name">
+                            </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Plant description<span
+                                        class="text-danger">*</span></label>
+                                <input type="text" value="<?= $row["plant_desc"] ?>" id="lname" name="plant_desc"
+                                    placeholder="Enter plant description">
+                            </div>
                         </div>
                         <div class="row justify-content-between text-left">
-                            <div class="form-group col-sm-6 flex-column d-flex"> <label
-                                    class="form-control-label px-3">Price<span class="text-danger"> *</span></label>
-                                <input type="text" id="text" value="<?= $row["plant_name"] ?>" name="email" placeholder=""> </div>
+                            <div class="form-group col-sm-6 flex-column d-flex">
+                                <label class="form-control-label px-3">Price<span class="text-danger">*</span></label>
+                                <input type="text" id="text" value="<?= $row["plant_price"] ?>" name="plant_price"
+                                    placeholder="">
+                            </div>
                             <div class="form-group">
                                 <label for="category">category</label>
-                                <select id="category">
-                                    <option>test</option>
-                                    <option>test</option>
-                                    <option>test</option>
+                                <select id="category" name="category">
+                                    <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
+                                        <option value="<?= $row["category_id"] ?>">
+                                            <?= $row["category_name"] ?>
+                                        </option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>image</label>
+                                <label>Image</label>
                                 <input name="productImg" type="file" class="form-control" required>
                             </div>
-
                         </div>
                         <div class="row justify-content-end">
-                            <div class="form-group col-sm-6"> 
-                                <button type="submit"class="btn-block btn-primary">Update</button> 
+                            <div class="form-group col-sm-6">
+                                <button type="submit" name="update_form" class="btn-block btn-primary">Update</button>
                             </div>
                         </div>
                     </form>
+
                 </div>
             </div>
         </div>
