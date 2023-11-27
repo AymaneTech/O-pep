@@ -18,9 +18,8 @@ function selectProduct(){
             <td><?=$row["plant_desc"]?></td>
             <td><?=$row["plant_price"]?></td>
             <td>
-                <a href="../models/deleteProduct.md.php?id=<?=$row["plant_id"]?>">delete</a>
+                <a href="../models/deleteProduct.md.php?id=<?=$row["plant_id"]?>">delete</a><br>
                 <a href="../pages/update.php?id=<?=$row["plant_id"]?>">Update</a>
-                <a href="#edEmployeerModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 
             </td>
         </tr>
