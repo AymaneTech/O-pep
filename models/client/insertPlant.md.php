@@ -1,6 +1,6 @@
 <?php
 include ("../../config/db.php");
-
+print_r($_POST);
 insertProduct();
 function insertProduct()
 {

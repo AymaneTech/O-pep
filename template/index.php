@@ -11,14 +11,11 @@ $catQuery = "SELECT * FROM category";
 $catStmt = $pdo->prepare($catQuery);
 $catStmt->execute();
 
-// 
+
 ?>
 
 <!DOCTYPE html>
 <html lang="zxx">
-
-
-<!-- Mirrored from htmldemo.net/pronia/pronia/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 26 Nov 2023 20:48:28 GMT -->
 
 <head>
 
@@ -711,11 +708,12 @@ $catStmt->execute();
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="../models/filter.php" method="post">
+                        <form action="" method="post">
                             <ul class="nav product-tab-nav tab-style-1" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <?php while ($catRow = $catStmt->fetch(PDO::FETCH_ASSOC)) { ?>
                                     <li class="nav-item" role="presentation">
+                                        <input type="hidden" name="cat_id" value="<?= $catRow["category_id"]  ?>">
                                         <input type="submit" name="category" value="<?= $catRow["category_name"] ?>">
                                     </li>
                                 <?php } ?>

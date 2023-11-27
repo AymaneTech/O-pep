@@ -55,13 +55,14 @@ include('../config/db.php');
                 
             <div style="margin-left: 0vh;" class="col-10 table-responsive overflow-hidden" >
                 <div class="table-wrapper">
-                    <table class="table table-striped table-hover">
+                    <table class="table table-striped table-hover w-100">
                         <thead>
                             <tr>
                                 <th>Category id</th>
                                 <th>category name</th>
                                 <th>category description</th>
                                 <th>Actions</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
