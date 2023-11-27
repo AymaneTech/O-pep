@@ -1,17 +1,30 @@
 <?php require("../config/db.php");
-// select plants
-global $pdo;
-$query = "SELECT * FROM plant;";
-$stmt = $pdo->prepare($query);
-if (!$stmt->execute()) {
-    die("error");
+if (isset($_GET["id"])) {
+
+    $id = intval($_GET["id"]);
+    $query = "SELECT * FROM plant where category_id = :id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+    $stmt->execute();
+    $rows = $stmt->fetchAll();
+
+} elseif (!(isset($_GET["id"]))) {
+    // select plants
+    global $pdo;
+    $query = "SELECT * FROM plant;";
+    $stmt = $pdo->prepare($query);
+    $stmt->execute();
+    $rows = $stmt->fetchAll();
+    if (!$stmt->execute()) {
+        die("error");
+    }
+
 }
 // select categories
 $catQuery = "SELECT * FROM category";
 $catStmt = $pdo->prepare($catQuery);
 $catStmt->execute();
-
-
+$catRows = $catStmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +39,6 @@ $catStmt->execute();
     <meta name="description"
         content="Pronia plant store bootstrap 5 template is an awesome website template for any home plant shop.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico" />
 
     <!-- CSS
     ============================================ -->
@@ -43,6 +54,13 @@ $catStmt->execute();
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .filter-links {
+            border: 1px dashed #abd373;
+            padding: 10px 15px;
+            border-radius: 8px;
+        }
+    </style>
 
 </head>
 
@@ -80,11 +98,9 @@ $catStmt->execute();
                                     <i class="pe-7s-call"></i>
                                     <a href="tel://+00-123-456-789">+00 123 456 789</a>
                                 </div>
-
                                 <a href="index-2.html" class="header-logo">
                                     <img src="assets/images/logo/dark.png" alt="Header Logo">
                                 </a>
-
                                 <div class="header-right">
                                     <ul>
                                         <li>
@@ -708,23 +724,20 @@ $catStmt->execute();
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <form action="" method="post">
-                            <ul class="nav product-tab-nav tab-style-1" id="myTab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <?php while ($catRow = $catStmt->fetch(PDO::FETCH_ASSOC)) { ?>
-                                    <li class="nav-item" role="presentation">
-                                        <input type="hidden" name="cat_id" value="<?= $catRow["category_id"]  ?>">
-                                        <input type="submit" name="category" value="<?= $catRow["category_name"] ?>">
-                                    </li>
-                                <?php } ?>
-                            </ul>
-                        </form>
+                        <ul class="nav product-tab-nav gap-2 tab-style-1" id="myTab" role="tablist">
+                            <a href="http://localhost/O-pep/template" class="filter-links">view all</a>
+                            <?php foreach ($catRows as $catRow) { ?>
+                                <a class="filter-links"
+                                    href="http://localhost/O-pep/template?id=<?= $catRow["category_id"] ?>">
+                                    <?php echo $catRow ? $catRow["category_name"] : "null" ?>
+                                </a>
+                            <?php } ?>
+                        </ul>
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="featured" role="tabpanel"
                                 aria-labelledby="featured-tab">
                                 <div class="product-item-wrap row">
-                                    <?php
-                                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                                    <?php foreach ($rows as $row) {
                                         ?>
                                         <div class="col-xl-3 col-md-4 col-sm-6">
                                             <div class="product-item">
@@ -736,21 +749,17 @@ $catStmt->execute();
                                                     </a>
                                                     <div class="product-add-action">
                                                         <ul>
-                                                            <li class="quuickview-btn" data-bs-toggle="modal"
-                                                                data-bs-target="#quickModal">
-                                                                <a href="#" data-tippy="Quickview" data-tippy-inertia="true"
-                                                                    data-tippy-animation="shift-away" data-tippy-delay="50"
-                                                                    data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                                    <i class="pe-7s-look"></i>
-                                                                </a>
-                                                            </li>
+                                                            
                                                             <li>
-                                                                <a href="cart.html" data-tippy="Add to cart"
+                                                            <form action="../models/addtoCart.php" method="get">
+                                                                <input type="hidden" name="plant_id" value="<?= $row["plant_id"]?>">
+                                                                <button data-tippy="Add to cart"
                                                                     data-tippy-inertia="true"
                                                                     data-tippy-animation="shift-away" data-tippy-delay="50"
                                                                     data-tippy-arrow="true" data-tippy-theme="sharpborder">
                                                                     <i class="pe-7s-cart"></i>
-                                                                </a>
+                                                                </button>
+                                                            </form>
                                                             </li>
                                                         </ul>
                                                     </div>
@@ -804,16 +813,9 @@ $catStmt->execute();
                                                 </a>
                                                 <div class="product-add-action">
                                                     <ul>
-                                                        <li class="quuickview-btn" data-bs-toggle="modal"
-                                                            data-bs-target="#quickModal">
-                                                            <a href="#" data-tippy="Quickview" data-tippy-inertia="true"
-                                                                data-tippy-animation="shift-away" data-tippy-delay="50"
-                                                                data-tippy-arrow="true" data-tippy-theme="sharpborder">
-                                                                <i class="pe-7s-look"></i>
-                                                            </a>
-                                                        </li>
+                                                        
                                                         <li>
-                                                            <a href="cart.html" data-tippy="Add to cart"
+                                                            <a href="" data-tippy="Add to cart"
                                                                 data-tippy-inertia="true"
                                                                 data-tippy-animation="shift-away" data-tippy-delay="50"
                                                                 data-tippy-arrow="true" data-tippy-theme="sharpborder">
