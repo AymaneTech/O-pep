@@ -16,14 +16,25 @@ function validate($email)
         $row = checkAccountExisting($email);
         if (password_verify($_POST["password"], $row["password"])){
             if ($row["role_id"]==1){
-                header("location: ../pages/home.php");
+
+                session_start();
+                $_SESSION["email"] = $email;
+                $_SESSION["password"] = $row["password"];
+                $_SESSION["role"] = $row["role_id"];
+                $_SESSION["id"] = $row["user_id"];
+
+                header("location: ../template");
             }else if($row["role_id"]==2){
+
+                session_start();
+                $_SESSION["email"] = $email;
+                $_SESSION["password"] = $_POST["password"];
+                $_SESSION["role"] = $row["role_id"];
+                $_SESSION["id"] = $row["user_id"];
+
                 header("location: ../pages/dashboard.php");
             }
-            session_start();
-            $_SESSION["email"] = $email;
-            $_SESSION["password"] = $_POST["password"];
-            $_SESSION["role"] = $row["role_id"];
+
         }else {
             header("location: ../pages/login.php?error=password incorrect");
         }
