@@ -14,7 +14,7 @@ function selectCategory()
             <td><?=$row["category_name"]?></td>
             <td><?=$row["category_desc"]?></td>
             <td>
-                  <a href="../models/deleteCategory.php?=<?=$row["category_id"]?>">delete</a><br>
+                <a href="../models/deleteCategory.php?=<?=$row["category_id"]?>">delete</a><br>
                 <a href="../pages/updateCategory.php?id=<?= $row["category_id"] ?>">Update</a>
                     </td>
                 </tr>

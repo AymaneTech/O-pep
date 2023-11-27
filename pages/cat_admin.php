@@ -1,14 +1,8 @@
 <?php
-include("../models/selectProduct.md.php");
+include("../models/selectCategory.php");
 include('../config/db.php');
 
-global $pdo;
-$query = "SELECT * FROM category";
-$stmt = $pdo->prepare($query);
-$stmt->execute();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,8 +24,9 @@ $stmt->execute();
 </head>
 
 <body>
+    <div class="container-fluid">
         <div class="row">
-            <section class="menu-section">
+             <section class="menu-section">
                 <div class="border-bottom rounded">
                     <div class=" mx-auto | img-box">
                         <h3 class="text-white">o'pep</h3>
@@ -57,20 +52,21 @@ $stmt->execute();
                         </div>
                     </div>
                 </div>
+                
+            <div style="margin-left: 0vh;" class="col-10 table-responsive overflow-hidden" >
                 <div class="table-wrapper">
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th>Plant Image</th>
-                                <th>Plant name</th>
-                                <th>Plant description</th>
-                                <th>plant price</th>
+                                <th>Category id</th>
+                                <th>category name</th>
+                                <th>category description</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            selectProduct();
+                            selectCategory();
                             ?>
                         </tbody>
                     </table>
@@ -78,48 +74,29 @@ $stmt->execute();
             </div>
         </div>
     </div>
-
-
     <!-- Edit Modal HTML -->
     <div id="addEmployeeModal" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form action="../models/addProduct.md.php" method="POST" enctype="multipart/form-data">
+                <form action="../models/addCategory.php" method="POST" enctype="multipart/form-data">
                     <div class="modal-header">
                         <h4 class="modal-title">Add new product</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input name="productName" id="name" type="text" class="form-control" required>
+                            <label for="name">category Name</label>
+                            <input name="categoryName" id="name" type="text" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Price</label>
-                            <input name="product_price" type="text" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label>product description</label>
-                            <textarea name="productDesc" class="form-control" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="category">category</label>
-                            <select id="category" name="category">
-                                <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-                                    <option value="<?= $row["category_id"] ?>">
-                                        <?= $row["category_name"] ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>image</label>
-                            <input name="productImg" type="file" class="form-control" required>
+                            <label>Category description</label>
+                            <input name="categoryDesc" type="text" class="form-control" style="height: 75px;" required>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                        <button type="submit" class="btn btn-success">add</button </div>
+                        <button type="submit" name="catSubmit" class="btn btn-success">add</button>
+                    </div> 
                 </form>
             </div>
         </div>
