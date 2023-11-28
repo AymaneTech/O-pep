@@ -1154,6 +1154,8 @@ $catRows = $catStmt->fetchAll();
         </div>
         <!-- Footer Area End Here -->
 
+
+
         <!-- Begin Modal Area -->
         <div class="modal quick-view-modal fade" id="quickModal" data-bs-backdrop="static" data-bs-keyboard="false"
             tabindex="-1" aria-labelledby="quickModal" aria-hidden="true">
@@ -1304,6 +1306,13 @@ $catRows = $catStmt->fetchAll();
             </div>
         </div>
         <!-- Modal Area End Here -->
+
+        <?php
+        include ("../config/db.php");
+        function select_cart_elements(){
+            $query = "SELECT * FROM cart_plant where;";
+        }
+        ?>
 
         <!-- Begin Scroll To Top -->
         <a class="scroll-to-top" href="#">
