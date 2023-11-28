@@ -1,4 +1,5 @@
 <?php require("../config/db.php");
+session_start();
 if (isset($_GET["id"])) {
 
     $id = intval($_GET["id"]);
@@ -25,6 +26,23 @@ $catQuery = "SELECT * FROM category";
 $catStmt = $pdo->prepare($catQuery);
 $catStmt->execute();
 $catRows = $catStmt->fetchAll();
+// the function that fetch items gonna display on cart
+function select_cart_elements() {
+    $id = $_SESSION["id"];
+    global $pdo;
+    $query = "SELECT * FROM carts, plant, cart_plant
+              WHERE cart_plant.cart_id = carts.cart_id
+                AND cart_plant.plant_id = plant.plant_id
+                AND carts.users_fk = :user_id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':user_id', $id, PDO::PARAM_INT);
+    if ($stmt->execute()) {
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        return "cart is empty !!!";
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -535,51 +553,24 @@ $catRows = $catStmt->fetchAll();
                                     data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
                         </div>
                         <ul class="minicart-list">
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="#"><i class="pe-7s-close" data-tippy="Remove"
-                                        data-tippy-inertia="true" data-tippy-animation="shift-away"
-                                        data-tippy-delay="50" data-tippy-arrow="true"
-                                        data-tippy-theme="sharpborder"></i></a>
-                                <a href="single-product-variable.html" class="product-item_img">
-                                    <img class="img-full" src="assets/images/product/small-size/2-1-70x78.png"
-                                        alt="Product Image">
-                                </a>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="single-product-variable.html">American
-                                        Marigold</a>
-                                    <span class="product-item_quantity">1 x $23.45</span>
-                                </div>
-                            </li>
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="#"><i class="pe-7s-close" data-tippy="Remove"
-                                        data-tippy-inertia="true" data-tippy-animation="shift-away"
-                                        data-tippy-delay="50" data-tippy-arrow="true"
-                                        data-tippy-theme="sharpborder"></i></a>
-                                <a href="single-product-variable.html" class="product-item_img">
-                                    <img class="img-full" src="assets/images/product/small-size/2-2-70x78.png"
-                                        alt="Product Image">
-                                </a>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="single-product-variable.html">Black Eyed
-                                        Susan</a>
-                                    <span class="product-item_quantity">1 x $25.45</span>
-                                </div>
-                            </li>
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="#">
-                                    <i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true"
-                                        data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true"
-                                        data-tippy-theme="sharpborder"></i>
-                                </a>
-                                <a href="single-product-variable.html" class="product-item_img">
-                                    <img class="img-full" src="assets/images/product/small-size/2-3-70x78.png"
-                                        alt="Product Image">
-                                </a>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="single-product-variable.html">Bleeding Heart</a>
-                                    <span class="product-item_quantity">1 x $30.45</span>
-                                </div>
-                            </li>
+                            <?php
+                            $cart_elements = select_cart_elements();
+                            foreach ($cart_elements as $cart_element) { ?>
+                                <li class="minicart-product">
+                                    <!-- Your HTML code here -->
+                                    <a class="product-item_remove" href="#"><i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
+                                    <a href="single-product-variable.html" class="product-item_img">
+                                        <img class="img-full" src="assets/images/product/small-size/2-2-70x78.png"
+                                             alt="Product Image">
+                                    </a>
+                                    <div class="product-item_content">
+                                        <a class="product-item_title" href="single-product-variable.html"><?= $cart_element["plant_name"] ?></a>
+                                        <span class="product-item_quantity">1 x $25.45</span>
+                                    </div>
+                                </li>
+                            <?php } ?>
+
+
                         </ul>
                     </div>
                     <div class="minicart-item_total">
@@ -1306,17 +1297,6 @@ $catRows = $catStmt->fetchAll();
             </div>
         </div>
         <!-- Modal Area End Here -->
-
-        <?php
-        include ("../config/db.php");
-        function select_cart_elements(){
-//            $query = "select * from carts, plant, cart_plant
-//                          where cart_plant.cart_id = carts.cart_id and
-//                              cart_plant.plant_id = plant.plant_id and
-//                                  carts.users_fk = 81;";
-        }
-        ?>
-
         <!-- Begin Scroll To Top -->
         <a class="scroll-to-top" href="#">
             <i class="fa fa-angle-double-up"></i>

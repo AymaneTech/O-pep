@@ -1,6 +1,5 @@
 <?php
 include ("../config/db.php");
-
 session_start();
 $plant_id = (int)$_GET["plant_id"];
 $user_id = $_SESSION["id"];
@@ -24,6 +23,7 @@ function already_have_cart($cart_id,$plant_id){
     $stmt->bindParam(':plant_id', $plant_id, PDO::PARAM_INT);
     if($stmt->execute()){
         echo "i insert by already_have acart";
+        header("location: ../template?added");
     }else{
         echo "query not executed";
     }
@@ -34,12 +34,14 @@ function create_cart_for_user(){
     try {
         global $pdo;
         $plant_id = (int)$_GET["plant_id"];
-        $user_id = $_SESSION["id"];            $query = "INSERT INTO carts (car_amount,plant_fk, users_fk)  VALUES (1,:plant_fk, :user_fk)";
+        $user_id = $_SESSION["id"];
+        $query = "INSERT INTO carts (car_amount,plant_fk, users_fk)  VALUES (1,:plant_fk, :user_fk)";
             $stmt = $pdo->prepare($query);
             $stmt->bindParam(':plant_fk', $plant_id, PDO::PARAM_INT);
             $stmt->bindParam(':user_fk', $user_id, PDO::PARAM_INT);
             $stmt->execute();
             echo "Insertion successful";
+            header("location: ../template?added");
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
     }
@@ -53,6 +55,6 @@ function main_fuction($user_id, $plant_id){
     } else {
         create_cart_for_user();
     }
-    header("location: ../template?status=added successfly to cart");
+    // header("location: ../template?status=added successfly to cart");
 }
 main_fuction($user_id, $plant_id);
