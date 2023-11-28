@@ -1310,7 +1310,10 @@ $catRows = $catStmt->fetchAll();
         <?php
         include ("../config/db.php");
         function select_cart_elements(){
-            $query = "SELECT * FROM cart_plant where;";
+//            $query = "select * from carts, plant, cart_plant
+//                          where cart_plant.cart_id = carts.cart_id and
+//                              cart_plant.plant_id = plant.plant_id and
+//                                  carts.users_fk = 81;";
         }
         ?>
 
