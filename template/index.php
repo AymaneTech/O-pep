@@ -19,13 +19,20 @@ if (isset($_GET["id"])) {
     if (!$stmt->execute()) {
         die("error");
     }
-
 }
-// select categories
+if(isset($_POST["btn-search"])){
+   $rows= array_filter($rows ,fn($plant)=>$plant["plant_name"]==$_POST["Search"]);
+}else{
+    $rows= array_map(fn($plant)=> $plant,$rows);
+}
+
+// select categoriesx²
 $catQuery = "SELECT * FROM category";
 $catStmt = $pdo->prepare($catQuery);
 $catStmt->execute();
 $catRows = $catStmt->fetchAll();
+
+
 // the function that fetch items gonna display on cart
 function select_cart_elements() {
     $id = $_SESSION["id"];
@@ -42,6 +49,8 @@ function select_cart_elements() {
         return "cart is empty !!!";
     }
 }
+
+
 
 ?>
 
@@ -530,11 +539,9 @@ function select_cart_elements() {
                             <div class="modal-search">
                                 <span class="searchbox-info">Start typing and press Enter to search or ESC to
                                     close</span>
-                                <form action="#" class="hm-searchbox">
-                                    <input type="text" name="Search..." value="Search..."
-                                        onblur="if(this.value==''){this.value='Search...'}"
-                                        onfocus="if(this.value=='Search...'){this.value=''}" autocomplete="off">
-                                    <button class="search-btn" type="submit" aria-label="searchbtn">
+                                <form action="" method="post" class="hm-searchbox">
+                                    <input type="text" name="Search" value="Search...">
+                                    <button class="search-btn" name="btn-search" type="submit" aria-label="searchbtn">
                                         <i class="pe-7s-search"></i>
                                     </button>
                                 </form>
@@ -555,7 +562,8 @@ function select_cart_elements() {
                         <ul class="minicart-list">
                             <?php
                             $cart_elements = select_cart_elements();
-                            foreach ($cart_elements as $cart_element) { ?>
+                            if ($cart_elements > 0){
+                             foreach ($cart_elements as $cart_element) { ?>
                                 <li class="minicart-product">
                                     <!-- Your HTML code here -->
                                     <a class="product-item_remove" href="#"><i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
@@ -565,12 +573,15 @@ function select_cart_elements() {
                                     </a>
                                     <div class="product-item_content">
                                         <a class="product-item_title" href="single-product-variable.html"><?= $cart_element["plant_name"] ?></a>
-                                        <span class="product-item_quantity">1 x $25.45</span>
+                                        <span class="product-item_quantity">1 x $<?= $cart_element["plant_price"] ?></span>
                                     </div>
                                 </li>
-                            <?php } ?>
-
-
+                            <?php }
+                            } else{ ?>
+                                <li class="minicart-product">
+                                   <p>cart is empty</p>
+                                 </li>
+                          <?php  }?>
                         </ul>
                     </div>
                     <div class="minicart-item_total">

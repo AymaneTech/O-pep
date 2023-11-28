@@ -34,7 +34,7 @@
                         <div class="text-center text-lg-center mt-4 pt-2">
                             <button type="submit" class="btn btn-primary btn-lg" name="login-btn" style="padding-left: 2.5rem; padding-right: 2.5rem;" name="login">Login</button>
                     </form>
-                    <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="./signup.php" class="link-danger">Register</a></p>
+                    <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="./index.php" class="link-danger">Register</a></p>
                 </div>
             </div>
         </div>
