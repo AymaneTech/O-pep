@@ -1,5 +1,7 @@
 <?php require("../config/db.php");
 session_start();
+$user_id =  $_SESSION["id"];
+// =========================================================================
 if (isset($_GET["id"])) {
 
     $id = intval($_GET["id"]);
@@ -8,7 +10,7 @@ if (isset($_GET["id"])) {
     $stmt->bindParam(":id", $id, PDO::PARAM_INT);
     $stmt->execute();
     $rows = $stmt->fetchAll();
-
+// =========================================================================
 } elseif (!(isset($_GET["id"]))) {
     // select plants
     global $pdo;
@@ -20,6 +22,7 @@ if (isset($_GET["id"])) {
         die("error");
     }
 }
+// =========================================================================
 if(isset($_POST["btn-search"])){
    $rows= array_filter($rows ,fn($plant)=>$plant["plant_name"]==$_POST["Search"]);
 }else{
@@ -32,7 +35,7 @@ $catStmt = $pdo->prepare($catQuery);
 $catStmt->execute();
 $catRows = $catStmt->fetchAll();
 
-
+// =========================================================================
 // the function that fetch items gonna display on cart
 function select_cart_elements() {
     $id = $_SESSION["id"];
@@ -49,9 +52,22 @@ function select_cart_elements() {
         return "cart is empty !!!";
     }
 }
-
-
-
+// =========================================================================
+// this function calculates the total price of plants in cart
+function cart_total(){
+    global $pdo;
+    $id = $_SESSION["id"];
+    $query ="SELECT SUM(plant.plant_price) AS total_price
+                FROM carts
+                JOIN cart_plant ON cart_plant.cart_id = carts.cart_id
+                JOIN plant ON cart_plant.plant_id = plant.plant_id
+                WHERE carts.users_fk = :user_id;";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindParam(':user_id', $id, PDO::PARAM_INT);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+echo $user_id;
 ?>
 
 <!DOCTYPE html>
@@ -143,7 +159,9 @@ function select_cart_elements() {
                                                 <i class="pe-7s-users"></i>
                                             </button>
                                             <ul class="dropdown-menu" aria-labelledby="settingButton">
-                                                <li><a class="dropdown-item" href="my-account.html">My account</a></li>
+                                                <form action="../models/logout.php" method="post">  
+                                                    <li><button class="dropdown-item" type="submit" name="logout">Log out</button></li>
+                                                </form>
                                                 <li><a class="dropdown-item" href="login-register.html">Login |
                                                         Register</a>
                                                 </li>
@@ -566,7 +584,7 @@ function select_cart_elements() {
                              foreach ($cart_elements as $cart_element) { ?>
                                 <li class="minicart-product">
                                     <!-- Your HTML code here -->
-                                    <a class="product-item_remove" href="#"><i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
+                                    <a class="product-item_remove" href="../models/addtoCart.php?id=<?php $cart_element["plant_id"]?>"><i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
                                     <a href="single-product-variable.html" class="product-item_img">
                                         <img class="img-full" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($cart_element['plant_image']);?>"
                                              alt="Product Image">
@@ -586,11 +604,13 @@ function select_cart_elements() {
                     </div>
                     <div class="minicart-item_total">
                         <span>Subtotal</span>
-                        <span class="ammount">$79.35</span>
+                        <span class="ammount">$<?php $total = cart_total();
+                            echo $total["total_price"];?></span>
                     </div>
                     <div class="group-btn_wrap d-grid gap-2">
-                        <a href="cart.html" class="btn btn-dark">View Cart</a>
-                        <a href="checkout.html" class="btn btn-dark">Checkout</a>
+                        <form action="../models/checkout.php" method="post">
+                            <button class="btn btn-dark">Checkout</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -755,7 +775,7 @@ function select_cart_elements() {
                                                             <li>
                                                             <form action="../models/addtoCart.php" method="get">
                                                                 <input type="hidden" name="plant_id" value="<?= $row["plant_id"]?>">
-                                                                <button data-tippy="Add to cart"
+                                                                <button data-tippy="Add to cart" class="add-btn" style="border: none;background: #F4F4F4;"
                                                                     data-tippy-inertia="true"
                                                                     data-tippy-animation="shift-away" data-tippy-delay="50"
                                                                     data-tippy-arrow="true" data-tippy-theme="sharpborder">

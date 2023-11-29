@@ -40,7 +40,7 @@ function create_cart_for_user(){
             $stmt->bindParam(':plant_fk', $plant_id, PDO::PARAM_INT);
             $stmt->bindParam(':user_fk', $user_id, PDO::PARAM_INT);
             $stmt->execute();
-            echo "Insertion successful";
+            already_have_cart($cart_id,$plant_id);
             header("location: ../template?added");
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
