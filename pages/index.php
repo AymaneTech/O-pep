@@ -80,7 +80,7 @@ include("../includes/header.php");
                                 </form>
                             </div>
                             <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
-                                <img src="./assets/images/image3.jpg" class="img-fluid" alt="Sample image">
+                                <img src="../assets/images/index.jpg" class="img-fluid h-100 w-100" alt="Sample image">
                             </div>
                         </div>
                     </div>

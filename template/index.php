@@ -568,7 +568,7 @@ function select_cart_elements() {
                                     <!-- Your HTML code here -->
                                     <a class="product-item_remove" href="#"><i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
                                     <a href="single-product-variable.html" class="product-item_img">
-                                        <img class="img-full" src="assets/images/product/small-size/2-2-70x78.png"
+                                        <img class="img-full" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($cart_element['plant_image']);?>"
                                              alt="Product Image">
                                     </a>
                                     <div class="product-item_content">
