@@ -16,6 +16,16 @@ if (!isset($_SESSION["username"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .role-link{
+            border: 2px dashed #f4f4f4;
+            border-radius: 16px;
+            padding: 8px 20px;
+            background: greenyellow;
+            font-size: 18px;
+            font-weight: 700;
+}
+    </style>
 </head> 
 
 <body>
@@ -27,7 +37,7 @@ if (!isset($_SESSION["username"])) {
             <div class="card p-5 d-flex flex-column align-items-center">
                 <img src="../assets/images/teamwork.png" alt="user icon">
                 <h2 class="user-role pt-3">
-                    I want to bye
+                    I want to buy
                 </h2>
                 <form action="../models/role.md.php/" method="POST">
                     <input type="hidden" name="role" value="client">
