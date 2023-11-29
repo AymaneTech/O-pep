@@ -1,14 +1,17 @@
 <?php
 include("../models/selectProduct.md.php");
 include('../config/db.php');
+session_start();
+if(empty($_SESSION["email"])){
+    header("Location: ./index.php");
+}
+
 
 global $pdo;
 $query = "SELECT * FROM category";
 $stmt = $pdo->prepare($query);
 $stmt->execute();
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">

@@ -1,4 +1,7 @@
 <?php require("../config/db.php");
+if(empty($_SESSION)){
+    header("location:../pages/login.php");
+}
 session_start();
 $user_id =  $_SESSION["id"];
 // =========================================================================
@@ -163,9 +166,6 @@ function cart_total(){
                                                 <form action="../models/logout.php" method="post">  
                                                     <li><button class="dropdown-item" type="submit" name="logout">Log out</button></li>
                                                 </form>
-                                                <li><a class="dropdown-item" href="login-register.html">Login |
-                                                        Register</a>
-                                                </li>
                                             </ul>
                                         </li>
                                         <li class="minicart-wrap me-3 me-lg-0">
@@ -584,7 +584,9 @@ function cart_total(){
                             if ($cart_elements > 0){
                              foreach ($cart_elements as $cart_element) { ?>
                                 <li class="minicart-product">
-                                    <a class="product-item_remove" href="../models/addtoCart.php?id=<?php $cart_element["plant_id"]?>"><i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
+                                    <a class="product-item_remove" href="../models/addtoCart.php?id=<?php $cart_element["plant_id"]?>">
+                                        <i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i>
+                                    </a>
                                     <a href="single-product-variable.html" class="product-item_img">
                                         <img class="img-full" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($cart_element['plant_image']);?>"
                                              alt="Product Image">
@@ -613,7 +615,7 @@ function cart_total(){
                     </div>
                     <div class="group-btn_wrap d-grid gap-2">
                         <form action="../models/checkout.php" method="post">
-                            <input type="hidden" name="cart_id" value="<?=$_SESSION["cart_id"]; ?>">
+                            <input type="hidden" name="cart_id" value="<?echo isset($_SESSION["cart_id"]) ? $_SESSION["cart_id"]: ""?>">
                             <button name="checkout_all" class="btn btn-dark">Checkout</button>
                         </form>
                     </div>
