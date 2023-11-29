@@ -22,6 +22,7 @@ function already_have_cart($cart_id,$plant_id){
     $stmt->bindParam(':cart_id', $cart_id, PDO::PARAM_INT);
     $stmt->bindParam(':plant_id', $plant_id, PDO::PARAM_INT);
     if($stmt->execute()){
+        $_SESSION["cart_id"] = $cart_id;
         echo "i insert by already_have acart";
         header("location: ../template?added");
     }else{
@@ -30,7 +31,7 @@ function already_have_cart($cart_id,$plant_id){
 }
 
 // and this function work when the user have no cart we create for him a cart
-function create_cart_for_user(){
+function create_cart_for_user($cart_id){
     try {
         global $pdo;
         $plant_id = (int)$_GET["plant_id"];
@@ -40,7 +41,7 @@ function create_cart_for_user(){
             $stmt->bindParam(':plant_fk', $plant_id, PDO::PARAM_INT);
             $stmt->bindParam(':user_fk', $user_id, PDO::PARAM_INT);
             $stmt->execute();
-            already_have_cart($cart_id,$plant_id);
+            already_have_cart($cart_id, $plant_id);
             header("location: ../template?added");
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
@@ -53,7 +54,7 @@ function main_fuction($user_id, $plant_id){
     if ($cart_id > 0) {
         already_have_cart($cart_id, $plant_id);
     } else {
-        create_cart_for_user();
+        create_cart_for_user($cart_id);
     }
     // header("location: ../template?status=added successfly to cart");
 }

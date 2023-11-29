@@ -67,7 +67,8 @@ function cart_total(){
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
-echo $user_id;
+
+
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +78,7 @@ echo $user_id;
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pronia - Plant Store Bootstrap 5 Template</title>
+    <title>O'pep | home</title>
     <meta name="robots" content="index, follow" />
     <meta name="description"
         content="Pronia plant store bootstrap 5 template is an awesome website template for any home plant shop.">
@@ -142,7 +143,7 @@ echo $user_id;
                                     <a href="tel://+00-123-456-789">+00 123 456 789</a>
                                 </div>
                                 <a href="index-2.html" class="header-logo">
-                                    <img src="assets/images/logo/dark.png" alt="Header Logo">
+                                    <h2>O'pep</h2>
                                 </a>
                                 <div class="header-right">
                                     <ul>
@@ -221,7 +222,7 @@ echo $user_id;
                             <div class="col-lg-3 col-6">
 
                                 <a href="index-2.html" class="header-logo">
-                                    <img src="assets/images/logo/dark.png" alt="Header Logo">
+                                    <h2>O'pep</h2>
                                 </a>
 
                             </div>
@@ -583,7 +584,6 @@ echo $user_id;
                             if ($cart_elements > 0){
                              foreach ($cart_elements as $cart_element) { ?>
                                 <li class="minicart-product">
-                                    <!-- Your HTML code here -->
                                     <a class="product-item_remove" href="../models/addtoCart.php?id=<?php $cart_element["plant_id"]?>"><i class="pe-7s-close" data-tippy="Remove" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme="sharpborder"></i></a>
                                     <a href="single-product-variable.html" class="product-item_img">
                                         <img class="img-full" src="data:image/jpg;charset=utf8;base64,<?php echo base64_encode($cart_element['plant_image']);?>"
@@ -591,8 +591,12 @@ echo $user_id;
                                     </a>
                                     <div class="product-item_content">
                                         <a class="product-item_title" href="single-product-variable.html"><?= $cart_element["plant_name"] ?></a>
-                                        <span class="product-item_quantity">1 x $<?= $cart_element["plant_price"] ?></span>
+                                        <span class="product-item_quantity">1 x $<?= $cart_element["plant_price"];?></span>
                                     </div>
+                                   <!-- <form action="../models/checkout.php" method="post">
+                                        <input type="hidden" name="checked_plant_id" value="<?php// $cart_element["plant_id"] ?>" >
+                                        <button type="submit" name="check_one">make order now</button>
+                                    </form>-->
                                 </li>
                             <?php }
                             } else{ ?>
@@ -609,7 +613,8 @@ echo $user_id;
                     </div>
                     <div class="group-btn_wrap d-grid gap-2">
                         <form action="../models/checkout.php" method="post">
-                            <button class="btn btn-dark">Checkout</button>
+                            <input type="hidden" name="cart_id" value="<?=$_SESSION["cart_id"]; ?>">
+                            <button name="checkout_all" class="btn btn-dark">Checkout</button>
                         </form>
                     </div>
                 </div>
@@ -1029,7 +1034,7 @@ echo $user_id;
                             <div class="footer-widget-item">
                                 <div class="footer-widget-logo">
                                     <a href="index-2.html">
-                                        <img src="assets/images/logo/dark.png" alt="Logo">
+                                        <h2>O'pep</h2>
                                     </a>
                                 </div>
                                 <p class="footer-widget-desc">Lorem ipsum dolor sit amet, consec adipisl elit, sed do
