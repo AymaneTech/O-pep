@@ -72,11 +72,9 @@ if (isset($_POST["update_form"])) {
     <div class="container-fluid px-1 py-5 mx-auto">
         <div class="row d-flex justify-content-center">
             <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-                <h3>Request a Demo</h3>
-                <p class="blue-text">Just answer a few questions<br> so that we can personalize the right experience for
-                    you.</p>
+                <h3>Update this product</h3>
                 <div class="card">
-                    <h5 class="text-center mb-4">Powering world-class companies</h5>
+                    <h5 class="text-center mb-4">Product informations</h5>
                     <form class="form-card" action="" method="post" enctype="multipart/form-data">
                         <div class="row justify-content-between text-left">
                             <div class="form-group col-sm-6 flex-column d-flex">

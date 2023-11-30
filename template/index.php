@@ -1,8 +1,8 @@
 <?php require("../config/db.php");
+session_start();
 if(empty($_SESSION)){
     header("location:../pages/login.php");
 }
-session_start();
 $user_id =  $_SESSION["id"];
 // =========================================================================
 if (isset($_GET["id"])) {

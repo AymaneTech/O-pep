@@ -14,7 +14,7 @@ function insert_one_order(){
 function insert_all_order(){
     global $pdo;
     $cart_id = $_SESSION["cart_id"];
-    $query = "INSERT INTO orders (cart_fk) values (:cart_id);";
+    $query = "INSERT INTO orders (pivot_fk) values (:cart_id);";
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(":cart_id", $cart_id, PDO::PARAM_INT);
     $stmt->execute();
